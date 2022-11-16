@@ -1,0 +1,137 @@
+clc
+clear all
+close all
+% Use a [7,4] Hamming code.
+%k = 3; n = 2^m-1; m = n-k;
+%[H, G] = hammgen(k); % Produce parity-check matrix.
+k=input('Enter no of message bits k');
+n=input('Enter no of code bits n');
+G=zeros(k,n);
+G(:,1:k)=eye(k);
+disp('Enter Parity matrix k x n-k');
+for i=1:k
+    for j=1:n-k
+        G(i,j+k)=input('');
+    end
+end
+d=0:2^k-1;
+db=dec2bin(d);
+for i=1:2^k
+    for j=1:k
+        dbb(i,j)=str2num(db(i,j));
+    end
+end
+c(1:2^k,:)=rem(dbb(1:2^k,:)*G,2);
+%wt=sum(c,2);
+H=[G(:,k+1:n)' eye(n-k)];
+
+de_table=zeros(n,n);
+for i=1:n
+    
+    de_table(i,i) = 1;
+    
+end
+
+%trt = decodtable(H); % Produce decoding table.
+disp('Enter recd vector');
+for i=1:n
+    recd(1,i)=input('');
+end
+syndrome = rem(recd * H',2);
+Hd=bi2de(H');
+syndrome_de = bi2de(syndrome,'left-msb'); % Convert to decimal.
+disp(['Syndrome = ',num2str(syndrome_de),...
+    ' (decimal), ',num2str(syndrome),' (binary)']);
+    [x,~]=find(kron(syndrome_de,ones(n,1)) == Hd);
+
+error_pattern=de_table(x,:);
+correct_codword=xor(recd,error_pattern);
+disp('Generator matrix is ');
+G
+disp('Transpose of Parity matrix is ');
+H'
+disp('Decoding table is ');
+de_table
+disp('Recieved code word is ')
+recd
+disp('Corrected code word is ')
+correct_codword
+
+
+
+
+
+
+
+
+
+output
+
+
+Enter no of message bits k
+3
+Enter no of code bits n
+6
+Enter Parity matrix k x n-k
+1
+0
+1
+0
+1
+1
+1
+1
+0
+Enter recd vector
+0
+1
+1
+1
+1
+0
+Syndrome = 3 (decimal), 0  1  1 (binary)
+Generator matrix is 
+
+G =
+
+     1     0     0     1     0     1
+     0     1     0     0     1     1
+     0     0     1     1     1     0
+
+Transpose of Parity matrix is 
+
+ans =
+
+     1     0     1
+     0     1     1
+     1     1     0
+     1     0     0
+     0     1     0
+     0     0     1
+
+Decoding table is 
+
+de_table =
+
+     1     0     0     0     0     0
+     0     1     0     0     0     0
+     0     0     1     0     0     0
+     0     0     0     1     0     0
+     0     0     0     0     1     0
+     0     0     0     0     0     1
+
+Recieved code word is 
+
+recd =
+
+     0     1     1     1     1     0
+
+Corrected code word is 
+
+correct_codword =
+
+  1×6 logical array
+
+   0   1   0   1   1   0
+
+>> 
