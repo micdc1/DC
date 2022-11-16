@@ -69,3 +69,12 @@ z=['Mutual information Ixy= ',num2str(Ixy),'bits'];
 disp(z)
 z=['Channel capacity C is= ',num2str(c),'bits/sec'];
 disp(z)
+
+
+
+
+output
+enter probability of x1 
+0.2
+enter conditinal probality....
+0.4
