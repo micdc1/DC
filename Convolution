@@ -21,3 +21,18 @@ tablen=3;
 decoded=vitdec(rcode,trellis,tablen,"trunc","hard");
 %Hard decision
 disp(decoded)
+
+
+
+
+output
+enter input msg bits
+>> [1 0 1]
+enter constrain
+>> 3
+enetr the no of output
+2
+enter gen poly in octal
+5
+enter gen poly in octal 
+7
