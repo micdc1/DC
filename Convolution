@@ -1,0 +1,23 @@
+clc;
+%convolution code
+%clear all;
+%close all;
+msg=input("enter input msg bits:");
+l=input("enter the constrain length:");
+n=input("enter the no.of output:");
+for j=1:n
+g (j)=input("enter the generator polynomial in octal:");
+end
+trellis=poly2trellis(l,g);
+disp(trellis);
+[isok,status]=istrellis(trellis);
+if(isok==0)
+disp("trellis is not valid");
+end
+code=convenc(msg,trellis);
+display(code);
+rcode=input("enter the received code");
+tablen=3;
+decoded=vitdec(rcode,trellis,tablen,"trunc","hard");
+%Hard decision
+disp(decoded)
