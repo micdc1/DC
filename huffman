@@ -47,3 +47,9 @@ enter the probability
 [0.1 0.1 0.2 0.25 0.25 0.1]
 the entropy of source is 
 2.4610
+
+
+enter  the trans symbol
+[1 2 3 4 5 1 2 3 4]
+enter the receive symbol
+[1 2 3 4 5 1 2 3 4]
