@@ -34,3 +34,6 @@ legend('BPSK','QPSK','16PSK');
 title('BER vs SNR');
 ylabel('BER');
 xlabel('SNR(db)');
+
+
+Output: GRAPH
