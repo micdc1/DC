@@ -6,13 +6,13 @@ msg=input("enter input msg bits:");
 l=input("enter the constrain length:");
 n=input("enter the no.of output:");
 for j=1:n
-g (j)=input("enter the generator polynomial in octal:");
+ g (j)=input("enter the generator polynomial in octal:");
 end
 trellis=poly2trellis(l,g);
 disp(trellis);
 [isok,status]=istrellis(trellis);
 if(isok==0)
-disp("trellis is not valid");
+ disp("trellis is not valid");
 end
 code=convenc(msg,trellis);
 display(code);
@@ -21,22 +21,16 @@ tablen=3;
 decoded=vitdec(rcode,trellis,tablen,"trunc","hard");
 %Hard decision
 disp(decoded)
-
-
-
-
-output
-enter input msg bits
+Output:-
+Enter input message bits :
 >> [1 0 1]
-enter constrain
->> 3
-enetr the no of output
-2
-enter gen poly in octal
+En constraint length :
+>>3
+En no.of.outputs:
+>>2
+Engenerator polynomial:
 5
-enter gen poly in octal 
+En generator polynomial :
 7
-
-
- enter the receuve code
- [1 1 0 1 0 0]
+Enter received code:
+>>[1 1 0 1 0 0]
