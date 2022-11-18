@@ -1,19 +1,23 @@
 close all;
-clear all;
+clear all; 
 clc;
-len = 10000; %Number of Symbols
-M = [2 4 16]; %Size of alphabet
+len = 10000;   %Number of Symbols
+M = [2 4 16];  %Size of alphabet
+
 k = 1
 for m = 1:3
 %Modulate using both PSK and PAM
 %to compare the two methods
-msg = randi([0 M(m)-1],len,1); %Original Signal
+msg = randi([0 M(m)-1],len,1);  %Original Signal
 txpsk = pskmod(msg,M(m));
+
 %Create a scatter plot of the received signals
 %scatterplot(txpsk)
 i = 1;
+
 for snr = 1:2:50
 rxpsk = awgn(txpsk,snr,'measured');
+
 %x = scatterplot(rxpsk);
 recovpsk = pskdemod(rxpsk,M(m));
 errors = 0;
